@@ -1,1 +1,17 @@
-README File
+/*** MathGame ***/
+
+/*** Authors ***/
+ Jordan Nguyen
+ Chris Jeffery
+
+/*** About ***/
+ Quick math game, used to
+ force children to learn
+ their times table. The
+ object is to score as
+ many points in one 
+ minute. The second
+ objective is to get at
+ least 20 problems correct
+ in order to open the
+ internet.
