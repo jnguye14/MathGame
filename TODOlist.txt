@@ -1,0 +1,10 @@
+/*** MathGame ***/
+
+TODO:
+
+	- Sounds
+	- No Enter / Key Events
+	- Timer
+	- Score
+	- IO / High Score
+	- Keypad

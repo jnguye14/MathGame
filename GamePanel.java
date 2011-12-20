@@ -1,19 +1,18 @@
-package multgame;
+//Jordan Nguyen
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
-import javax.swing.JOptionPane;
-// import java.applet.AudioClip;
-// import java.net.URL;
 
-public class GamePanel extends JPanel
+@SuppressWarnings("serial")
+public class GamePanel extends JPanel implements KeyListener, ActionListener
 {
     private JLabel problem, answerPrompt, score, msg;
     private JTextField entry;
-    private JButton input;
-    private int product;
+    private JButton clear;
+    @SuppressWarnings("unused")
+	private int product;
     private int numNeeded = 10;
     // private AudioClip correctSFX, wrongSFX, accessSFX;
 
@@ -25,16 +24,17 @@ public class GamePanel extends JPanel
         
         answerPrompt = new JLabel("Answer: ");
         answerPrompt.setHorizontalAlignment(JLabel.RIGHT);
-        entry = new JTextField("Hello");
+        entry = new JTextField("Type...");
         entry.setHorizontalAlignment(JTextField.CENTER);
-        input = new JButton("Enter");
-        input.addActionListener(new ButtonListener());
+        entry.addKeyListener(this);
+        clear = new JButton("Clear");
+        clear.addActionListener(new ButtonListener());
 
         JPanel HBox = new JPanel();
         HBox.setLayout(new GridLayout(1,3));
         HBox.add(answerPrompt);
         HBox.add(entry);
-        HBox.add(input);
+        HBox.add(clear);
         HBox.setDoubleBuffered(true);
 
         String str = "You need to get " + numNeeded + " problems right to get internet.";
@@ -83,6 +83,8 @@ public class GamePanel extends JPanel
         public void actionPerformed(ActionEvent event)
         {
             String str = "";
+            
+            /*
             if(Integer.parseInt(entry.getText()) == product)
             {
                 // correctSFX.play();
@@ -106,7 +108,35 @@ public class GamePanel extends JPanel
                 str = "Sorry, the correct answer was " + product;
             }
             generateProb();
+            */
+            entry.setText("");
+            entry.requestFocus();
+            
             msg.setText(str);
         }
     }
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

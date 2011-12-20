@@ -1,4 +1,4 @@
-package multgame;
+//Jordan Nguyen
 
 import javax.swing.*;
 
