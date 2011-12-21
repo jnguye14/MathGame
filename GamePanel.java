@@ -1,19 +1,17 @@
-//Jordan Nguyen
+/*** Jordan Nguyen ***/
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Random;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements KeyListener, ActionListener
+public class GamePanel extends JPanel
 {
-    private JLabel problem, answerPrompt, score, msg;
-    private JTextField entry;
-    private JButton clear;
-    @SuppressWarnings("unused")
-	private int product;
-    private int numNeeded = 10;
+    protected JLabel problem, answerPrompt, score, msg;
+    protected JTextField entry;
+    protected JButton clear;
+	protected int product;
+    protected int numNeeded = 20;
     // private AudioClip correctSFX, wrongSFX, accessSFX;
 
     GamePanel()
@@ -25,10 +23,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
         answerPrompt = new JLabel("Answer: ");
         answerPrompt.setHorizontalAlignment(JLabel.RIGHT);
         entry = new JTextField("Type...");
+        entry.setSelectionStart(0);
+        entry.setSelectionEnd(7);
         entry.setHorizontalAlignment(JTextField.CENTER);
-        entry.addKeyListener(this);
         clear = new JButton("Clear");
-        clear.addActionListener(new ButtonListener());
 
         JPanel HBox = new JPanel();
         HBox.setLayout(new GridLayout(1,3));
@@ -66,11 +64,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
          */
     }
 
-    private void generateProb()
+    protected void generateProb()
     {
         Random rnd = new Random();
-        int num1 = rnd.nextInt(16); // numbers 0 to 15
-        int num2 = rnd.nextInt(16); // numbers 0 to 15
+        int num1 = rnd.nextInt(10); // numbers 0 to 10
+        int num2 = rnd.nextInt(10); // numbers 0 to 10
         product = num1*num2;
         String str = "<html><font face=\"Comic Sans MS\" color =\"BLUE\" size=\"6\"><b>"
                 + "What is " + num1 + " x " + num2 + "?"
@@ -78,65 +76,4 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
         problem.setText(str);
     }
 
-    private class ButtonListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent event)
-        {
-            String str = "";
-            
-            /*
-            if(Integer.parseInt(entry.getText()) == product)
-            {
-                // correctSFX.play();
-                numNeeded--;
-                str = "You need to get " + numNeeded + " more right before you get internet.";
-                score.setText(str);
-                str = "Correct!";
-                if(numNeeded == 0)
-                {
-                    JOptionPane.showMessageDialog(null, "<html><font size=\"6\">"
-                            + "Congratulations! You've got Internetz! ☺"
-                            + "</font></html>");
-                    //
-                }
-                if(numNeeded <= 0)
-                    str = "Congratulations! You've got Internetz! ☺";
-            }
-            else
-            {
-                // wrongSFX.play();
-                str = "Sorry, the correct answer was " + product;
-            }
-            generateProb();
-            */
-            entry.setText("");
-            entry.requestFocus();
-            
-            msg.setText(str);
-        }
-    }
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
