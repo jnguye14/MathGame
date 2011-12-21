@@ -69,11 +69,15 @@ public class Controller implements ActionListener, KeyListener {
         }
         else
         {
-        	// TODO: See if too many numbers in TextField
-        	//e.getKeyText();
-        	//entry.setText(e.getKeyText());
-            // wrongSFX.play();
-            //str = "Sorry, the correct answer was " + product;
+        	// See if too many numbers in TextField
+        	if((Integer.toString(GAME_PANEL.product)).length() <= GAME_PANEL.entry.getText().length())
+        	{
+        		GAME_PANEL.score.setText("Your answer is wrong. Double check your math.");
+            	// TODO: wrongSFX.play();
+        	}
+        	else
+        		GAME_PANEL.score.setText(GAME_PANEL.str);
+        	
         }		
 	}
 

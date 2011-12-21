@@ -12,6 +12,7 @@ public class GamePanel extends JPanel
     protected JButton clear;
 	protected int product;
     protected int numNeeded = 20;
+    protected String str;
     // private AudioClip correctSFX, wrongSFX, accessSFX;
 
     GamePanel()
@@ -35,7 +36,7 @@ public class GamePanel extends JPanel
         HBox.add(clear);
         HBox.setDoubleBuffered(true);
 
-        String str = "You need to get " + numNeeded + " problems right to get internet.";
+        str = "You need to get " + numNeeded + " problems right to get internet.";
         score = new JLabel(str);
         score.setHorizontalAlignment(JLabel.CENTER);
         msg = new JLabel("");
@@ -70,10 +71,10 @@ public class GamePanel extends JPanel
         int num1 = rnd.nextInt(10); // numbers 0 to 10
         int num2 = rnd.nextInt(10); // numbers 0 to 10
         product = num1*num2;
-        String str = "<html><font face=\"Comic Sans MS\" color =\"BLUE\" size=\"6\"><b>"
+        String prb = "<html><font face=\"Comic Sans MS\" color =\"BLUE\" size=\"6\"><b>"
                 + "What is " + num1 + " x " + num2 + "?"
                 + "</b></font></html>";
-        problem.setText(str);
+        problem.setText(prb);
     }
 
 }
