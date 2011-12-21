@@ -1,4 +1,4 @@
-/*** Chris Jeffery ***/
+﻿/*** Chris Jeffery ***/
 
 import java.awt.event.*;
 
@@ -37,10 +37,28 @@ public class Controller implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent arg0) 
 	{
 		String str = "";
+
+            // returns if entry field is empty
+            if(GAME_PANEL.entry.getText().length() <= 0)
+                return;
+
+            // returns if entered something that's not a digit
+            for(int i = 0; i < GAME_PANEL.entry.getText().length(); i++)
+            {
+                boolean isDigit = false;
+                for(char digit = '0'; digit <= '9'; digit++)
+                {
+                    if(GAME_PANEL.entry.getText().charAt(i) == digit)
+                        isDigit = true;
+                }
+                if(!isDigit)
+                    return;
+            }
+
 		
 		if(Integer.parseInt(GAME_PANEL.entry.getText()) == GAME_PANEL.product)
         {
-            // correctSFX.play();
+            GAME_PANEL.correctSFX.play();
 			
 			// Message
 			GAME_PANEL.numNeeded--;
@@ -51,13 +69,14 @@ public class Controller implements ActionListener, KeyListener {
             
             if(GAME_PANEL.numNeeded == 0)
             {
+                GAME_PANEL.accessSFX.play();
                 JOptionPane.showMessageDialog(null, "<html><font size=\"6\">"
                         + "Congratulations! You've got Internetz! ☺"
                         + "</font></html>");
                 //TODO: Open up the Internet.
                 //      More than the OK button
                 //      Need Internet AND Replay Button
-            }else if(GAME_PANEL.numNeeded <= 0) //Is this necessary?
+            }else if(GAME_PANEL.numNeeded <= 0) //Is this necessary? No, it's not necessary
                 str = "Congratulations! You've got Internetz! ☺";
             else
             {

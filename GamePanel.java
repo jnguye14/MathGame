@@ -3,6 +3,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import java.applet.AudioClip;
+import java.net.URL;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel
@@ -13,7 +15,7 @@ public class GamePanel extends JPanel
 	protected int product;
     protected int numNeeded = 20;
     protected String str;
-    // private AudioClip correctSFX, wrongSFX, accessSFX;
+    protected AudioClip correctSFX, accessSFX; // wrongSFX
 
     GamePanel()
     {
@@ -49,20 +51,18 @@ public class GamePanel extends JPanel
         add(score);
         add(msg);
         
-        /*
          try {
-            URL url = new URL("file", "localhost", "\\Users\\planettop92\\Desktop\\music.wav");
+            URL url = new URL("file", "localhost", "\\Users\\planettop92\\MathGame\\MathGame\\answerCorrect.wav");
             correctSFX = JApplet.newAudioClip(url);
-            url = new URL("file", "localhost", "\\Users\\planettop92\\Desktop\\music.wav");
-            wrongSFX = JApplet.newAudioClip(url);
-            url = new URL("file", "localhost", "\\Users\\planettop92\\Desktop\\music.wav");
-            accessSFX = new JApplet.newAudioClip(url);
+            // url = new URL("file", "localhost", "\\Users\\planettop92\\Desktop\\music.wav");
+            // wrongSFX = JApplet.newAudioClip(url);
+            url = new URL("file", "localhost", "\\Users\\planettop92\\MathGame\\MathGame\\winInternet.wav");
+            accessSFX = JApplet.newAudioClip(url);
          }
          catch(Exception ex)
          {
             System.out.println("Music Not Found.");
          }
-         */
     }
 
     protected void generateProb()
