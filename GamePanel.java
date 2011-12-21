@@ -12,7 +12,7 @@ public class GamePanel extends JPanel
     protected JLabel problem, answerPrompt, score, msg;
     protected JTextField entry;
     protected JButton clear;
-	protected int product;
+    protected int product;
     protected int numNeeded = 20;
     protected String str;
     protected AudioClip correctSFX, accessSFX; // wrongSFX
@@ -68,8 +68,8 @@ public class GamePanel extends JPanel
     protected void generateProb()
     {
         Random rnd = new Random();
-        int num1 = rnd.nextInt(10); // numbers 0 to 10
-        int num2 = rnd.nextInt(10); // numbers 0 to 10
+        int num1 = rnd.nextInt(11); // numbers 0 to 10
+        int num2 = rnd.nextInt(11); // numbers 0 to 10
         product = num1*num2;
         String prb = "<html><font face=\"Comic Sans MS\" color =\"BLUE\" size=\"6\"><b>"
                 + "What is " + num1 + " x " + num2 + "?"

@@ -1,10 +1,10 @@
 ﻿/*** Chris Jeffery ***/
 
 import java.awt.event.*;
-
 import javax.swing.JOptionPane;
 
-public class Controller implements ActionListener, KeyListener {
+public class Controller implements ActionListener, KeyListener
+{
 
 	protected GamePanel GAME_PANEL;
 	
@@ -52,7 +52,12 @@ public class Controller implements ActionListener, KeyListener {
                         isDigit = true;
                 }
                 if(!isDigit)
+                {
+                    GAME_PANEL.msg.setText("<html><font color =\"RED\">"
+                            + "Please enter only digits."
+                            + "</font></html>");
                     return;
+                }
             }
 
 		
@@ -64,7 +69,7 @@ public class Controller implements ActionListener, KeyListener {
 			GAME_PANEL.numNeeded--;
             str = "You need to get " + GAME_PANEL.numNeeded + " more right before you get internet.";
             GAME_PANEL.score.setText(str);
-            //str = "Correct!";
+            GAME_PANEL.msg.setText("Correct!");
             
             
             if(GAME_PANEL.numNeeded == 0)
@@ -88,15 +93,16 @@ public class Controller implements ActionListener, KeyListener {
         }
         else
         {
-        	// See if too many numbers in TextField
-        	if((Integer.toString(GAME_PANEL.product)).length() <= GAME_PANEL.entry.getText().length())
-        	{
-        		GAME_PANEL.score.setText("Your answer is wrong. Double check your math.");
-            	// TODO: wrongSFX.play();
-        	}
-        	else
-        		GAME_PANEL.score.setText(GAME_PANEL.str);
-        	
+            // See if too many numbers in TextField
+            if((Integer.toString(GAME_PANEL.product)).length() <= GAME_PANEL.entry.getText().length())
+            {
+                GAME_PANEL.msg.setText("<html><font color =\"RED\">"
+                        + "Your answer is wrong. Double check your math."
+                        + "</font></html>");
+                // TODO: GAME_PANEL.wrongSFX.play();
+            }
+            //else // do we need this?
+            //    GAME_PANEL.score.setText(GAME_PANEL.str);
         }		
 	}
 
