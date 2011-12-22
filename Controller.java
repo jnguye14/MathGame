@@ -83,6 +83,7 @@ public class Controller implements ActionListener, KeyListener
             }
             if(!isDigit)
             {
+                GAME_PANEL.MODEL.wrongSFX.play();
                 GAME_PANEL.msg.setText("<html><font color =\"RED\">"
                         + "Please enter only digits."
                         + "</font></html>");
@@ -138,10 +139,10 @@ public class Controller implements ActionListener, KeyListener
             // See if too many numbers in TextField
             if((Integer.toString(GAME_PANEL.MODEL.product)).length() <= GAME_PANEL.entry.getText().length())
             {
+                GAME_PANEL.MODEL.wrongSFX.play();
                 GAME_PANEL.msg.setText("<html><font color =\"RED\">"
                         + "Your answer is wrong. Double check your math."
                         + "</font></html>");
-                // TODO: GAME_PANEL.MODEL.wrongSFX.play();
             }else
             	GAME_PANEL.msg.setText("");
         }

@@ -11,7 +11,7 @@ public class Model {
     protected int product;
     protected int numNeeded = 20;
     protected String str, prb;
-    protected AudioClip correctSFX, accessSFX; // wrongSFX
+    protected AudioClip correctSFX, accessSFX, wrongSFX;
     
     Model()
     {

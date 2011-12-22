@@ -15,7 +15,10 @@ public class Main extends JApplet
         AudioClip accessSFX = getAudioClip(getCodeBase(), "winInternet.wav");
         // accessSFX.play();
         panel.GAME_PANEL.MODEL.accessSFX = accessSFX;
-    	// System.out.println(getCodeBase());
+    	AudioClip wrongSFX = getAudioClip(getCodeBase(), "answerWrong.wav");
+        // wrongSFX.play();
+        panel.GAME_PANEL.MODEL.wrongSFX = wrongSFX;
+        // System.out.println(getCodeBase());
         // System.out.println(getDocumentBase());
 
         getContentPane().add(panel.GAME_PANEL);

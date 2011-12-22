@@ -15,3 +15,10 @@
  least 20 problems correct
  in order to open the
  internet.
+
+/*** Resources ***/
+ - StopWatch.java (c) by Corey Goldberg
+ - GameMaker Sounds:
+     curious_up.wav (answerCorrect.wav)
+     cancel.wav (answerWrong.wav)
+     win3.wav (winInternet.wav)
