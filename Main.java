@@ -9,7 +9,8 @@ public class Main extends JApplet
     {
     	Controller panel = new Controller();
         getContentPane().add(panel.GAME_PANEL);
-        setSize(350, 100);
+        setSize(350, 300); // Should the Button Panel be placed underneath
+        //setSize(500, 200); // or to the side?
 		
     } // init()
 } // Game class

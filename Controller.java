@@ -93,6 +93,7 @@ public class Controller implements ActionListener, KeyListener
                 //TODO: Open up the Internet.
                 //      More than the OK button
                 //      Need Internet AND Replay Button
+                //      Record Time to Answer all Questions
             }
             else
             {
@@ -112,7 +113,7 @@ public class Controller implements ActionListener, KeyListener
                 GAME_PANEL.msg.setText("<html><font color =\"RED\">"
                         + "Your answer is wrong. Double check your math."
                         + "</font></html>");
-                // TODO: GAME_PANEL.wrongSFX.play();
+                // TODO: GAME_PANEL.MODEL.wrongSFX.play();
             }else
             	GAME_PANEL.msg.setText("");
         }
