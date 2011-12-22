@@ -17,6 +17,7 @@ public class Model {
     {
         str = "You need to get " + numNeeded + " problems right to get internet.";
         
+        /*
         // search for music files
         try {
             URL url = new URL("file", "localhost", "\\Users\\planettop92\\MathGame\\MathGame\\answerCorrect.wav");
@@ -30,6 +31,7 @@ public class Model {
         {
             System.out.println("Music Not Found.");
         }
+        */
 
     }
 
