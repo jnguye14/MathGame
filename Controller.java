@@ -16,6 +16,9 @@ public class Controller implements ActionListener, KeyListener
         
         GAME_PANEL.entry.addKeyListener(this);
         GAME_PANEL.clear.addActionListener(new ButtonListener());
+
+        for(int i = 0; i < GAME_PANEL.buttons.length; i++)
+            GAME_PANEL.buttons[i].addActionListener(new ButtonListener());
     }
 
 /*** LISTENERS AND EVENTS ***/
@@ -24,8 +27,16 @@ public class Controller implements ActionListener, KeyListener
     {
         public void actionPerformed(ActionEvent event)
         {
-            GAME_PANEL.entry.setText("");
-            GAME_PANEL.entry.requestFocus();
+            if(event.getSource().equals(GAME_PANEL.clear))
+            {
+                GAME_PANEL.entry.setText("");
+                GAME_PANEL.entry.requestFocus();
+            }
+            else
+            {
+                GAME_PANEL.entry.replaceSelection(event.getActionCommand());
+                check();
+            }
         }
     }
 
@@ -37,6 +48,23 @@ public class Controller implements ActionListener, KeyListener
 
     @Override
     public void keyReleased(KeyEvent arg0)
+    {
+        check();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent arg0)
+    {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0)
+    {
+
+    }
+
+    private void check()
     {
         String str = "";
 
@@ -117,18 +145,6 @@ public class Controller implements ActionListener, KeyListener
             }else
             	GAME_PANEL.msg.setText("");
         }
-    }
-
-    @Override
-    public void keyTyped(KeyEvent arg0)
-    {
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent arg0)
-    {
-
-    }
+    } // check()
     
 }

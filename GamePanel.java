@@ -89,7 +89,6 @@ public class GamePanel extends JPanel
         for(int i = 1; i < buttons.length; i++)
         {
             buttons[i] = new JButton(Integer.toString(i));
-            //buttons[i].addActionListener(new ButtonListener());
             ButtonPanel.add(buttons[i]);
         }
         JLabel filler = new JLabel(" ");
