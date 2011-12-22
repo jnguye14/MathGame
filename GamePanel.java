@@ -3,29 +3,25 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Random;
-import java.applet.AudioClip;
-import java.net.URL;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel
 {
+    protected Model MODEL;
     protected JLabel problem, answerPrompt, score, msg, timeLab;
     protected JTextField entry;
     protected JButton clear;
-    protected int product;
-    protected int numNeeded = 20;
-    protected String str;
-    protected AudioClip correctSFX, accessSFX; // wrongSFX
     protected StopWatch watch;
     protected Timer timer;
 
     GamePanel()
     {
+    	MODEL = new Model();
+    	
         // create a problem
         problem = new JLabel("");
         problem.setHorizontalAlignment(JLabel.CENTER);
-        generateProb();
+        MODEL.generateProb();
 
         // create area where user types in answer
         answerPrompt = new JLabel("Answer: ");
@@ -45,27 +41,13 @@ public class GamePanel extends JPanel
         HBox.setDoubleBuffered(true);
 
         // messages under answer area
-        str = "You need to get " + numNeeded + " problems right to get internet.";
-        score = new JLabel(str);
+        score = new JLabel(MODEL.str);
         score.setHorizontalAlignment(JLabel.CENTER);
         msg = new JLabel("");
         msg.setHorizontalAlignment(JLabel.CENTER);
         timeLab = new JLabel("Elapsed Time: 0 Seconds"); // changed
         timeLab.setHorizontalAlignment(JLabel.CENTER);
-
-        // search for music files
-        try {
-            URL url = new URL("file", "localhost", "\\Users\\planettop92\\MathGame\\MathGame\\answerCorrect.wav");
-            correctSFX = JApplet.newAudioClip(url);
-            // url = new URL("file", "localhost", "\\Users\\planettop92\\Desktop\\music.wav");
-            // wrongSFX = JApplet.newAudioClip(url);
-            url = new URL("file", "localhost", "\\Users\\planettop92\\MathGame\\MathGame\\winInternet.wav");
-            accessSFX = JApplet.newAudioClip(url);
-        }
-        catch(Exception ex)
-        {
-            System.out.println("Music Not Found.");
-        }
+        problem.setText(MODEL.prb);
 
         // start timer & watch
         watch = new StopWatch();
@@ -73,12 +55,10 @@ public class GamePanel extends JPanel
                 {
                     public void actionPerformed(ActionEvent e)
                     {
-                        str = "Elapsed Time: " + watch.getElapsedTimeSecs() + " Seconds";
-                        timeLab.setText(str);
+                        MODEL.str = "Elapsed Time: " + watch.getElapsedTimeSecs() + " Seconds";
+                        timeLab.setText(MODEL.str);
                     }
                 });
-        watch.start();
-        timer.start();
 
         // add everything for this JPanel to show // moved
         // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -90,16 +70,4 @@ public class GamePanel extends JPanel
         add(timeLab);
     }
 
-    // function to generate a new problem
-    protected void generateProb()
-    {
-        Random rnd = new Random();
-        int num1 = rnd.nextInt(11); // numbers 0 to 10
-        int num2 = rnd.nextInt(11); // numbers 0 to 10
-        product = num1*num2;
-        String prb = "<html><font face=\"Comic Sans MS\" color =\"BLUE\" size=\"6\"><b>"
-                + "What is " + num1 + " x " + num2 + "?"
-                + "</b></font></html>";
-        problem.setText(prb);
-    }
 }

@@ -6,10 +6,14 @@ import javax.swing.JOptionPane;
 public class Controller implements ActionListener, KeyListener
 {
     protected GamePanel GAME_PANEL;
+    private int startClock;
 
     Controller()
     {
         GAME_PANEL = new GamePanel();
+        
+        startClock = GAME_PANEL.MODEL.numNeeded;
+        
         GAME_PANEL.entry.addKeyListener(this);
         GAME_PANEL.clear.addActionListener(new ButtonListener());
     }
@@ -58,49 +62,59 @@ public class Controller implements ActionListener, KeyListener
             }
         }
 
-        if(Integer.parseInt(GAME_PANEL.entry.getText()) == GAME_PANEL.product)
+        if(Integer.parseInt(GAME_PANEL.entry.getText()) == GAME_PANEL.MODEL.product)
         {
-            GAME_PANEL.correctSFX.play();
+            GAME_PANEL.MODEL.correctSFX.play();
+            
+            // CHECK: I don't know if it's better to start the clock here or when the app opens?
+            // Start Clock
+            if(GAME_PANEL.MODEL.numNeeded == startClock)
+            {
+            	GAME_PANEL.watch.start();
+            	GAME_PANEL.timer.start();
+            }
 
             // Message
-            GAME_PANEL.numNeeded--;
-            str = "You need to get " + GAME_PANEL.numNeeded + " more right before you get internet.";
+            GAME_PANEL.MODEL.numNeeded--;
+            str = "You need to get " + GAME_PANEL.MODEL.numNeeded + " more right before you get internet.";
             GAME_PANEL.score.setText(str);
             GAME_PANEL.msg.setText("Correct!");
-            // we may want to record: GAME_PANEL.watch.getElapsedTimeSecs() to get average time for each answer?
+            // TODO: get average time for each answer (StopWatch Method?)?
+            
 
-            if(GAME_PANEL.numNeeded == 0)
+            if(GAME_PANEL.MODEL.numNeeded == 0)
             {
                 GAME_PANEL.watch.stop();
                 GAME_PANEL.timer.stop();
-                GAME_PANEL.accessSFX.play();
+                GAME_PANEL.MODEL.accessSFX.play();
                 JOptionPane.showMessageDialog(null, "<html><font size=\"6\">"
                         + "Congratulations! You've got Internetz! ☺"
                         + "</font></html>");
                 //TODO: Open up the Internet.
                 //      More than the OK button
                 //      Need Internet AND Replay Button
-                //      Record Time to Answer all Questions
             }
             else
             {
                 GAME_PANEL.entry.setText("");
                 GAME_PANEL.entry.requestFocus();
-                GAME_PANEL.generateProb();
+                
+                // Create new problem
+                GAME_PANEL.MODEL.generateProb();
+                GAME_PANEL.problem.setText(GAME_PANEL.MODEL.prb);
             }
         }
         else
         {
             // See if too many numbers in TextField
-            if((Integer.toString(GAME_PANEL.product)).length() <= GAME_PANEL.entry.getText().length())
+            if((Integer.toString(GAME_PANEL.MODEL.product)).length() <= GAME_PANEL.entry.getText().length())
             {
                 GAME_PANEL.msg.setText("<html><font color =\"RED\">"
                         + "Your answer is wrong. Double check your math."
                         + "</font></html>");
                 // TODO: GAME_PANEL.wrongSFX.play();
-            }
-            //else // do we need this?
-            //    GAME_PANEL.score.setText(GAME_PANEL.str);
+            }else
+            	GAME_PANEL.msg.setText("");
         }
     }
 
@@ -115,4 +129,5 @@ public class Controller implements ActionListener, KeyListener
     {
 
     }
+    
 }
