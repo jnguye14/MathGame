@@ -82,10 +82,6 @@ public class Controller implements ActionListener, KeyListener
             }
             if(!isDigit)
             {
-                // GAME_PANEL.MODEL.wrongSFX.play();
-                // GAME_PANEL.msg.setText("<html><font color =\"RED\">"
-                //         + "Please enter only digits."
-                //         + "</font></html>");
                 GAME_PANEL.Update("invalid");
                 return;
             }
@@ -103,13 +99,6 @@ public class Controller implements ActionListener, KeyListener
 
         if(Integer.parseInt(GAME_PANEL.entry.getText()) == GAME_PANEL.MODEL.product)
         {
-            // GAME_PANEL.MODEL.correctSFX.play();
-
-            // Message
-            // GAME_PANEL.MODEL.numNeeded--;
-            // str = "You need to get " + GAME_PANEL.MODEL.numNeeded + " more right before you get internet.";
-            // GAME_PANEL.score.setText(str);
-            // GAME_PANEL.msg.setText("Correct!");
             // TODO: get average time for each answer (StopWatch Method?)?
             GAME_PANEL.Update("correct");
 
@@ -151,27 +140,13 @@ public class Controller implements ActionListener, KeyListener
                 //      Need Internet AND Replay Button
                 //      Record Time to Answer all Questions
             }
-            // else
-            // {
-                // GAME_PANEL.entry.setText("");
-                // GAME_PANEL.entry.requestFocus();
-                
-                // Create new problem
-                // GAME_PANEL.MODEL.generateProb();
-                // GAME_PANEL.problem.setText(GAME_PANEL.MODEL.prb);
-            // }
         }
         else
         {
             // See if too many numbers in TextField
             if((Integer.toString(GAME_PANEL.MODEL.product)).length() <= GAME_PANEL.entry.getText().length())
-            {
-                // GAME_PANEL.MODEL.wrongSFX.play();
-                // GAME_PANEL.msg.setText("<html><font color =\"RED\">"
-                //         + "Your answer is wrong. Double check your math."
-                //         + "</font></html>");
                 GAME_PANEL.Update("wrong");
-            }else
+            else
             	GAME_PANEL.msg.setText("");
         }
     } // check()
