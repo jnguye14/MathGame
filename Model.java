@@ -17,10 +17,7 @@ public class Model {
     	rnd = new Random();
     	
         generateProb();
-        
-        str = "You need to get " + numNeeded + " problems right to get internet.";
-        msg = "";
-        time = "Elapsed Time: 0 Seconds";
+        gameReplay();
     }
 
     // Generate Random Problems
@@ -38,7 +35,9 @@ public class Model {
     {
         correctSFX.play();
         numNeeded--;
-        str = "You need to get " + numNeeded + " more right before you get internet.";
+        str = "<html>You need to get <font color =\"GREEN\">"
+                + numNeeded
+                + "</font> more right before you get internet.</html>";
         msg = "Correct!";
         generateProb();
     }
@@ -47,7 +46,7 @@ public class Model {
     {
         wrongSFX.play();
         msg = "<html><font color =\"RED\">"
-                + "Your answer is wrong. Double check your math."
+                + "Your answer is wrong. Please double check your math."
                 + "</font></html>";
     }
 
@@ -59,8 +58,10 @@ public class Model {
 
     protected void gameReplay()
     {
-    	str = "You need to get " + numNeeded + " more right before you get internet.";
+        str = "<html>You need to get <font color =\"GREEN\">"
+                + numNeeded
+                + "</font> problems right to get internet.</html>";
         msg = "";
-        time = "Elapsed Time: 0 Seconds";
+        time = "<html>Elapsed Time: <font color =\"GREEN\">0</font> Seconds</html>";
     }
 }

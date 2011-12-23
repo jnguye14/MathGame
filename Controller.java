@@ -29,6 +29,7 @@ public class Controller implements ActionListener, KeyListener
         {
             if(event.getSource().equals(GAME_PANEL.clear))
             {
+                GAME_PANEL.msg.setText(""); /** added **/
                 GAME_PANEL.entry.setText("");
                 GAME_PANEL.entry.requestFocus();
             }
@@ -90,17 +91,19 @@ public class Controller implements ActionListener, KeyListener
             }
         }
 
+
+        // CHECK: I don't know if it's better to start the clock here or when the app opens?
+        /** I moved this up an if statement so the clock would start when they enter anything in **/
+        // Start Clock
+        if(GAME_PANEL.MODEL.numNeeded == startClock)
+        {
+            GAME_PANEL.watch.start();
+            GAME_PANEL.timer.start();
+        }
+
         if(Integer.parseInt(GAME_PANEL.entry.getText()) == GAME_PANEL.MODEL.product)
         {
             // GAME_PANEL.MODEL.correctSFX.play();
-            
-            // CHECK: I don't know if it's better to start the clock here or when the app opens?
-            // Start Clock
-            if(GAME_PANEL.MODEL.numNeeded == startClock)
-            {
-            	GAME_PANEL.watch.start();
-            	GAME_PANEL.timer.start();
-            }
 
             // Message
             // GAME_PANEL.MODEL.numNeeded--;
@@ -119,7 +122,7 @@ public class Controller implements ActionListener, KeyListener
                 //Object Internet = "Internet";
                 Object[] possibleValues = {"Internet", "Replay", "Exit" };
                 int selectedValue = JOptionPane.showOptionDialog(null,
-                		"<html><font size=\"6\">"
+                        "<html><font size=\"6\">"
                         + "Congratulations! You've got Internetz! ☺"
                         + "</font></html>",
                         "", JOptionPane.YES_NO_CANCEL_OPTION,

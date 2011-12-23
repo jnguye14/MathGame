@@ -46,6 +46,7 @@ public class GamePanel extends JPanel
         HBox.add(clear);
         HBox.setDoubleBuffered(true);
 
+        /** Already done above in "Set JLabel messages..." area
         // messages under answer area
         score = new JLabel(MODEL.str);
         score.setHorizontalAlignment(JLabel.CENTER);
@@ -54,16 +55,14 @@ public class GamePanel extends JPanel
         timeLab = new JLabel("Elapsed Time: 0 Seconds"); // changed
         timeLab.setHorizontalAlignment(JLabel.CENTER);
         problem.setText(MODEL.prb);
+        **/
 
         // start timer & watch
         watch = new StopWatch();
         timer = new Timer(1000, new ActionListener()
                 {
                     public void actionPerformed(ActionEvent e)
-                    {
-                        MODEL.str = "Elapsed Time: " + watch.getElapsedTimeSecs() + " Seconds";
-                        timeLab.setText(MODEL.str);
-                    }
+                    { Update("time"); }
                 });
 
         // Entire Game Area in VBox (messages & answer area)
@@ -100,7 +99,9 @@ public class GamePanel extends JPanel
     {
         if(event.equals("time"))
         {
-            MODEL.time = "Elapsed Time: " + watch.getElapsedTimeSecs() + " Seconds";
+            MODEL.time = "<html>Elapsed Time: <font color =\"GREEN\">"
+                    + watch.getElapsedTimeSecs()
+                    + "</font> Seconds</html>"; /** added color **/
             timeLab.setText(MODEL.time);
         }
         else if(event.equals("invalid"))
