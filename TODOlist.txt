@@ -2,9 +2,14 @@
 
 TODO:
 
+	- Lock / Unlock	Internet
+	- Score
+	- IO / High Score
+	- Difficulty Setting? (Optional)
+
+DONE:
+
 	- Sounds
 	- No Enter / Key Events
 	- Timer
-	- Score
-	- IO / High Score
 	- Keypad
