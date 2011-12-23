@@ -66,8 +66,6 @@ public class Controller implements ActionListener, KeyListener
 
     private void check()
     {
-        String str = "";
-
         // returns if entry field is empty
         if(GAME_PANEL.entry.getText().length() <= 0)
             return;
@@ -83,17 +81,18 @@ public class Controller implements ActionListener, KeyListener
             }
             if(!isDigit)
             {
-                GAME_PANEL.MODEL.wrongSFX.play();
-                GAME_PANEL.msg.setText("<html><font color =\"RED\">"
-                        + "Please enter only digits."
-                        + "</font></html>");
+                // GAME_PANEL.MODEL.wrongSFX.play();
+                // GAME_PANEL.msg.setText("<html><font color =\"RED\">"
+                //         + "Please enter only digits."
+                //         + "</font></html>");
+                GAME_PANEL.Update("invalid");
                 return;
             }
         }
 
         if(Integer.parseInt(GAME_PANEL.entry.getText()) == GAME_PANEL.MODEL.product)
         {
-            GAME_PANEL.MODEL.correctSFX.play();
+            // GAME_PANEL.MODEL.correctSFX.play();
             
             // CHECK: I don't know if it's better to start the clock here or when the app opens?
             // Start Clock
@@ -104,12 +103,12 @@ public class Controller implements ActionListener, KeyListener
             }
 
             // Message
-            GAME_PANEL.MODEL.numNeeded--;
-            str = "You need to get " + GAME_PANEL.MODEL.numNeeded + " more right before you get internet.";
-            GAME_PANEL.score.setText(str);
-            GAME_PANEL.msg.setText("Correct!");
+            // GAME_PANEL.MODEL.numNeeded--;
+            // str = "You need to get " + GAME_PANEL.MODEL.numNeeded + " more right before you get internet.";
+            // GAME_PANEL.score.setText(str);
+            // GAME_PANEL.msg.setText("Correct!");
             // TODO: get average time for each answer (StopWatch Method?)?
-            
+            GAME_PANEL.Update("correct");
 
             if(GAME_PANEL.MODEL.numNeeded == 0)
             {
@@ -124,25 +123,26 @@ public class Controller implements ActionListener, KeyListener
                 //      Need Internet AND Replay Button
                 //      Record Time to Answer all Questions
             }
-            else
-            {
-                GAME_PANEL.entry.setText("");
-                GAME_PANEL.entry.requestFocus();
+            // else
+            // {
+                // GAME_PANEL.entry.setText("");
+                // GAME_PANEL.entry.requestFocus();
                 
                 // Create new problem
-                GAME_PANEL.MODEL.generateProb();
-                GAME_PANEL.problem.setText(GAME_PANEL.MODEL.prb);
-            }
+                // GAME_PANEL.MODEL.generateProb();
+                // GAME_PANEL.problem.setText(GAME_PANEL.MODEL.prb);
+            // }
         }
         else
         {
             // See if too many numbers in TextField
             if((Integer.toString(GAME_PANEL.MODEL.product)).length() <= GAME_PANEL.entry.getText().length())
             {
-                GAME_PANEL.MODEL.wrongSFX.play();
-                GAME_PANEL.msg.setText("<html><font color =\"RED\">"
-                        + "Your answer is wrong. Double check your math."
-                        + "</font></html>");
+                // GAME_PANEL.MODEL.wrongSFX.play();
+                // GAME_PANEL.msg.setText("<html><font color =\"RED\">"
+                //         + "Your answer is wrong. Double check your math."
+                //         + "</font></html>");
+                GAME_PANEL.Update("wrong");
             }else
             	GAME_PANEL.msg.setText("");
         }

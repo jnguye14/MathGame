@@ -10,29 +10,16 @@ public class Model {
 
     protected int product;
     protected int numNeeded = 20;
-    protected String str, prb;
+    // Each String corresponds to one of GamePanel's JLabels
+    protected String str, prb, time, msg;
     protected AudioClip correctSFX, accessSFX, wrongSFX;
     
     Model()
     {
+        generaterProb();
         str = "You need to get " + numNeeded + " problems right to get internet.";
-        
-        /*
-        // search for music files
-        try {
-            URL url = new URL("file", "localhost", "\\Users\\planettop92\\MathGame\\MathGame\\answerCorrect.wav");
-            correctSFX = JApplet.newAudioClip(url);
-            // url = new URL("file", "localhost", "\\Users\\planettop92\\Desktop\\music.wav");
-            // wrongSFX = JApplet.newAudioClip(url);
-            url = new URL("file", "localhost", "\\Users\\planettop92\\MathGame\\MathGame\\winInternet.wav");
-            accessSFX = JApplet.newAudioClip(url);
-        }
-        catch(Exception ex)
-        {
-            System.out.println("Music Not Found.");
-        }
-        */
-
+        msg = "";
+        time = "Elapsed Time: 0 Seconds";
     }
 
     // Generate Random Problems
@@ -46,4 +33,27 @@ public class Model {
                 + "What is " + num1 + " x " + num2 + "?"
                 + "</b></font></html>";
     }
+
+    protected void answerCorrect()
+    {
+        correctSFX.play();
+        numNeeded--;
+        str = "You need to get " + numNeeded + " more right before you get internet.";
+        msg = "Correct!";
+    }
+
+    protected void answerWrong()
+    {
+        wrongSFX.play();
+        msg = "<html><font color =\"RED\">"
+                + "Your answer is wrong. Double check your math."
+                + "</font></html>";
+    }
+
+    protected void answerInvalid()
+    {
+        wrongSFX.play();
+        msg = "<html><font color =\"RED\">Please enter only digits.</font></html>";
+    }
+
 }

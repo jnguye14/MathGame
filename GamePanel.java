@@ -19,10 +19,15 @@ public class GamePanel extends JPanel
     {
     	MODEL = new Model();
     	
-        // create a problem
-        problem = new JLabel("");
+        // Set JLabel messages from MODEL & center align
+        problem = new JLabel(MODEL.prb);
+        score = new JLabel(MODEL.str);
+        msg = new JLabel(MODEL.msg);
+        timeLab = new JLabel(MODEL.time);
         problem.setHorizontalAlignment(JLabel.CENTER);
-        MODEL.generateProb();
+        score.setHorizontalAlignment(JLabel.CENTER);
+        msg.setHorizontalAlignment(JLabel.CENTER);
+        timeLab.setHorizontalAlignment(JLabel.CENTER);
 
         // create area where user types in answer
         answerPrompt = new JLabel("Answer: ");
@@ -61,17 +66,7 @@ public class GamePanel extends JPanel
                     }
                 });
 
-        /*
-        // add everything for this JPanel to show // moved
-        // setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setLayout(new GridLayout(5,1)); // changed
-        add(problem);
-        add(HBox);
-        add(score);
-        add(msg);
-        add(timeLab);
-        */
-
+        // Entire Game Area in VBox (messages & answer area)
         JPanel VBox = new JPanel();
         VBox.setLayout(new GridLayout(5,1));
         VBox.setDoubleBuffered(true);
@@ -81,6 +76,7 @@ public class GamePanel extends JPanel
         VBox.add(msg);
         VBox.add(timeLab);
 
+        // Create KeyPad
         JPanel ButtonPanel = new JPanel();
         ButtonPanel.setLayout(new GridLayout(4,3));
         ButtonPanel.setDoubleBuffered(true);
@@ -99,5 +95,37 @@ public class GamePanel extends JPanel
         add(VBox);
         add(ButtonPanel);
     } // end of GamePanel() constructor
+
+    public void Update(String event)
+    {
+        if(event.equals("time"))
+        {
+            MODEL.time = "Elapsed Time: " + watch.getElapsedTimeSecs() + " Seconds";
+            timeLab.setText(MODEL.time);
+        }
+        else if(event.equals("invalid"))
+        {
+            MODEL.answerInvalid();
+            msg.setText(MODEL.msg);
+        }
+        else if(event.equals("correct"))
+        {
+            MODEL.answerCorrect();
+            score.setText(MODEL.str);
+            msg.setText(MODEL.msg);
+
+            entry.setText("");
+            entry.requestFocus();
+            MODEL.generateProb();
+            problem.setText(MODEL.prb);
+        }
+        else if(event.equals("wrong"))
+        {
+            MODEL.answerWrong();
+            msg.setText(MODEL.msg);
+        }
+        else
+            System.out.println("Invalid Update Command");
+    }
 
 } // end of GamePanel class
