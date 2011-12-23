@@ -111,18 +111,25 @@ public class GamePanel extends JPanel
         else if(event.equals("correct"))
         {
             MODEL.answerCorrect();
+            
             score.setText(MODEL.str);
             msg.setText(MODEL.msg);
-
+            problem.setText(MODEL.prb);
             entry.setText("");
             entry.requestFocus();
-            MODEL.generateProb();
-            problem.setText(MODEL.prb);
         }
         else if(event.equals("wrong"))
         {
             MODEL.answerWrong();
             msg.setText(MODEL.msg);
+        }
+        else if(event.equals("replay"))
+        {     
+        	MODEL.gameReplay();
+        	
+        	score.setText(MODEL.str);
+        	msg.setText(MODEL.msg);
+        	timeLab.setText(MODEL.time);
         }
         else
             System.out.println("Invalid Update Command");

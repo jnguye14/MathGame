@@ -115,9 +115,34 @@ public class Controller implements ActionListener, KeyListener
                 GAME_PANEL.watch.stop();
                 GAME_PANEL.timer.stop();
                 GAME_PANEL.MODEL.accessSFX.play();
-                JOptionPane.showMessageDialog(null, "<html><font size=\"6\">"
+                
+                //Object Internet = "Internet";
+                Object[] possibleValues = {"Internet", "Replay", "Exit" };
+                int selectedValue = JOptionPane.showOptionDialog(null,
+                		"<html><font size=\"6\">"
                         + "Congratulations! You've got Internetz! ☺"
-                        + "</font></html>");
+                        + "</font></html>",
+                        "", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE, null,
+                        possibleValues, possibleValues[0]);
+                
+                switch(selectedValue)
+                {
+                case 0:
+                	// TODO: Unlock and Open the Internet(Chrome)
+                	break;
+                case 1:
+                	GAME_PANEL.MODEL.numNeeded = startClock;
+                	GAME_PANEL.Update("replay");
+                	break;
+                case 2:
+                	// TODO: Quit
+                	break;
+                default:
+                	// TODO: Msg Error -> Quit
+                	break;
+                }
+              
                 //TODO: Open up the Internet.
                 //      More than the OK button
                 //      Need Internet AND Replay Button

@@ -1,5 +1,6 @@
 /*** Jordan Nguyen ***/
 
+import java.applet.AudioClip;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
