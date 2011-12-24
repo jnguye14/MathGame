@@ -6,6 +6,8 @@
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
     Code Found at: http://www.goldb.org/stopwatchjava.html
+    
+    Dec. 23 2011, Edited by Christopher Jeffery 
 */
 
 public class StopWatch
@@ -13,6 +15,14 @@ public class StopWatch
     private long startTime = 0;
     private long stopTime = 0;
     private boolean running = false;
+    
+    public boolean notRunning()
+    {
+    	if(running)
+    		return false;
+    	
+    	return true;
+    }
 
     public void start()
     {
@@ -46,5 +56,11 @@ public class StopWatch
         else
             elapsed = ((stopTime - startTime) / 1000);
         return elapsed;
+    }
+    
+    //average time in milliseconds
+    public long getAverageTime(int denominator)
+    {
+    	return getElapsedTime() / denominator;
     }
 }

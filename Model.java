@@ -2,19 +2,25 @@
 
 import java.applet.AudioClip;
 import java.util.Random;
+import javax.swing.Timer;
 
 public class Model {
 
     protected int product;
     protected int numNeeded = 3;
-    Random rnd;
+    protected Random rnd;
     // Each String corresponds to one of GamePanel's JLabels
     protected String str, prb, time, msg;
+    protected StopWatch watch;
+    protected Timer timer;
     protected AudioClip correctSFX, accessSFX, wrongSFX;
     
     Model()
     {
     	rnd = new Random();
+    	
+    	// start timer & watch
+        watch = new StopWatch();
     	
         generateProb();
         gameReplay();
@@ -35,10 +41,12 @@ public class Model {
     {
         correctSFX.play();
         numNeeded--;
+        
         str = "<html>You need to get <font color =\"GREEN\">"
                 + numNeeded
                 + "</font> more right before you get internet.</html>";
         msg = "Correct!";
+        
         generateProb();
     }
 
@@ -58,6 +66,8 @@ public class Model {
 
     protected void gameReplay()
     {
+    	generateProb();
+    	
         str = "<html>You need to get <font color =\"GREEN\">"
                 + numNeeded
                 + "</font> problems right to get internet.</html>";

@@ -1,6 +1,7 @@
 /*** Jordan Nguyen ***/
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -12,8 +13,6 @@ public class GamePanel extends JPanel
     protected JTextField entry;
     protected JButton clear; // replay
     protected JButton[] buttons;
-    protected StopWatch watch;
-    protected Timer timer;
 
     GamePanel()
     {
@@ -45,25 +44,13 @@ public class GamePanel extends JPanel
         HBox.add(entry);
         HBox.add(clear);
         HBox.setDoubleBuffered(true);
-
-        /** Already done above in "Set JLabel messages..." area
-        // messages under answer area
-        score = new JLabel(MODEL.str);
-        score.setHorizontalAlignment(JLabel.CENTER);
-        msg = new JLabel("");
-        msg.setHorizontalAlignment(JLabel.CENTER);
-        timeLab = new JLabel("Elapsed Time: 0 Seconds"); // changed
-        timeLab.setHorizontalAlignment(JLabel.CENTER);
-        problem.setText(MODEL.prb);
-        **/
-
-        // start timer & watch
-        watch = new StopWatch();
-        timer = new Timer(1000, new ActionListener()
-                {
-                    public void actionPerformed(ActionEvent e)
-                    { Update("time"); }
-                });
+        
+        // Timer
+        MODEL.timer = new Timer(1000, new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            { Update("time"); }
+        });
 
         // Entire Game Area in VBox (messages & answer area)
         JPanel VBox = new JPanel();
@@ -100,7 +87,7 @@ public class GamePanel extends JPanel
         if(event.equals("time"))
         {
             MODEL.time = "<html>Elapsed Time: <font color =\"GREEN\">"
-                    + watch.getElapsedTimeSecs()
+                    + MODEL.watch.getElapsedTimeSecs()
                     + "</font> Seconds</html>"; /** added color **/
             timeLab.setText(MODEL.time);
         }
@@ -128,6 +115,7 @@ public class GamePanel extends JPanel
         {     
         	MODEL.gameReplay();
         	
+        	problem.setText(MODEL.prb);
         	score.setText(MODEL.str);
         	msg.setText(MODEL.msg);
         	timeLab.setText(MODEL.time);
